@@ -1,0 +1,24 @@
+name: 07 - Contexts
+on: 
+    push:
+    workflow_dispatch:
+
+jobs:
+    echo-data:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Show Info
+              run: |
+               echo "Nombre del evento: <recupere el nombre del evento aquí>"
+               echo "Ref: <recupere la referencia aquí>"
+               echo "SHA: <recupere el sha de commit aquí>"
+               echo "Actor: <recupere el nombre del actor aquí>"
+               echo "Flujo de trabajo: <recupere el nombre del workflow aquí>"
+               echo "ID de ejecución: <recupere el ID de ejecución aquí>"
+               echo "Número de ejecución: <recupere el número de ejecución aquí>"
+
+            - name: Retrieve Variable
+              run: |
+                echo "MY_VAR: $MY_VAR"
+                echo "ORG_VAR: $ORG_VAR"
+               
