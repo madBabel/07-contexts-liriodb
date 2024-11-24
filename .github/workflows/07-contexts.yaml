@@ -7,10 +7,16 @@ on:
            debug:
             default: false
             type: boolean
+env:
+  MY_WORKFLOW_VAR: workflow
+  MY_OVERWRITTEN_VAR: workflow
 
 jobs:
     echo-data:
         runs-on: ubuntu-latest
+        env:
+          MY_JOB_VAR: job
+          MY_OVERWRITTEN_VAR: job
         steps:
             - name: Show Info
               run: |
@@ -21,9 +27,18 @@ jobs:
                echo "Flujo de trabajo: <recupere el nombre del workflow aquí>"
                echo "ID de ejecución: <recupere el ID de ejecución aquí>"
                echo "Número de ejecución: <recupere el número de ejecución aquí>"
-
             - name: Retrieve Variable
               run: |
                 echo "MY_VAR: $MY_VAR"
                 echo "ORG_VAR: $ORG_VAR"
+            - name: Print Env Variables
+              env:
+                MY_OVERWRITTEN_VAR: step
+              run: |
+                echo "Workflow env: $MY_WORKFLOW_VAR"
+                echo "Overwritten env: $MY_OVERWRITTEN_VAR"
+            - name: Print Env Variables by def
+              run: |
+                echo "Workflow env: $MY_WORKFLOW_VAR"
+                echo "Overwritten env: $MY_OVERWRITTEN_VAR"
                
